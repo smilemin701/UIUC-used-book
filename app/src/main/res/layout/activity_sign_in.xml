@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.uiucusedbook.SignIn">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#0D1B39"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/Logo"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="right"
+                android:layout_margin="10dp"
+                android:src="@drawable/logo"></ImageView>
+
+            <TextView
+                android:id="@+id/SingInText"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_margin="0dp"
+                android:text="Sign In"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="#FFFFFF"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/BtnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#0D1B39"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/emailInput"
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:background="#E4D4CB"
+                android:hint="School Email (ex. cs125@illinois.edu)"
+                android:padding="10dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="#000000"
+                android:textColorHint="#ffffff"></EditText>
+
+            <EditText
+                android:id="@+id/passwordInput"
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="#E4D4CB"
+                android:hint="password"
+                android:padding="10dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="#000000"
+                android:textColorHint="#ffffff"></EditText>
+
+            <Spinner
+                android:id="@+id/gradeSpinner"
+                android:layout_width="350dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:backgroundTint="#E4D4CB"
+                android:entries="@array/grade"
+                android:popupBackground="#E4D4CB" />
+
+
+            <Button
+                android:id="@+id/SignInComplete"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                android:background="#FD9153"
+                android:text="Sign In"
+                android:textColor="#ffffff"></Button>
+
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
