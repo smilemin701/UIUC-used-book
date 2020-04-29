@@ -32,7 +32,7 @@ public class SignIn extends AppCompatActivity {
             public void onClick(final View v) {
                 //Toast.makeText(MainActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
                 //Implement the system for login/signin dataBase
-                Intent LoggedinSucess = new Intent(SignIn.this, MainPage.class);
+                Intent LoggedinSucess = new Intent(SignIn.this, MainActivity.class);
                 startActivity(LoggedinSucess);
             }
         });

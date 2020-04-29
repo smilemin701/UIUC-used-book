@@ -29,7 +29,7 @@ public class LogInPage extends AppCompatActivity {
             @Override
             public void onClick(final View v) {
                 //Toast.makeText(MainActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
-                Intent LoggedInSucess = new Intent(LogInPage.this, MainPage.class);
+                Intent LoggedInSucess = new Intent(LogInPage.this, MainActivity.class);
                 startActivity(LoggedInSucess);
             }
         });
