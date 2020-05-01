@@ -20,7 +20,8 @@
                 android:id="@+id/Logo"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="3dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
                 android:src="@drawable/logo"></ImageView>
 
 
@@ -34,50 +35,51 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
                 android:text="Form"
                 android:textColor="#ffffff"
-                android:layout_gravity="center"
                 android:textSize="35dp"
-                android:layout_marginTop="5dp"
                 android:textStyle="bold"></TextView>
 
             <EditText
-                android:id="@+id/emailInput"
+                android:id="@+id/bookTitleSelling"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:background="#E4D4CB"
-                android:hint="Title of the book"
+                android:hint="Book Title"
                 android:padding="10dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 android:textColor="#000000"
-                android:textColorHint="#ffffff"></EditText>
+                android:textColorHint="#B58E8E"></EditText>
+
             <EditText
-                android:id="@+id/emailInput"
+                android:id="@+id/bookAuthorSelling"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:background="#E4D4CB"
-                android:hint="Author of the book"
+                android:hint="Author"
                 android:padding="10dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 android:textColor="#000000"
-                android:textColorHint="#ffffff"></EditText>
+                android:textColorHint="#b58e8e"></EditText>
 
             <EditText
                 android:id="@+id/passwordInput"
                 android:layout_width="300dp"
                 android:layout_height="150dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:background="#E4D4CB"
-                android:hint="description (Less than 50 words)"
+                android:hint="Book Description (Less than 50 words)"
                 android:padding="10dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 android:textColor="#000000"
-                android:textColorHint="#ffffff"></EditText>
+                android:textColorHint="#b58e8e"></EditText>
 
             <Button
                 android:id="@+id/submit"
@@ -88,7 +90,6 @@
                 android:background="#FD9153"
                 android:text="Submit"
                 android:textColor="#ffffff"></Button>
-
 
 
         </LinearLayout>
