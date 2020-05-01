@@ -12,27 +12,28 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
         android:background="@color/light">
+
         <TextView
+            android:id="@+id/transactionText"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="Book Title"
             android:layout_gravity="center"
             android:padding="10dp"
+            android:text="Book Title"
             android:textColor="#ffffff"
-            android:id="@+id/transactionText"
-            android:textStyle="bold"
-            />
+            android:textStyle="bold" />
+
         <Button
+            android:id="@+id/ifSold"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_gravity="center"
-            android:text="sold"
+            android:layout_marginRight="5dp"
             android:background="@color/Orange"
-            android:id="@+id/ifSold"></Button>
+            android:text="sold"></Button>
 
 
-
-</LinearLayout>
+    </LinearLayout>
 
 
     </LinearLayout>

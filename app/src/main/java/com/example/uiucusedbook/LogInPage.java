@@ -41,6 +41,13 @@ public class LogInPage extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * Account Checking, if the entered information matches Admin or Account online,
+     * take the user to MainActivity.
+     * @param emailInput email input.
+     * @param passwordInput password input.
+     */
     public void accountCheck(String emailInput, String passwordInput) {
         if((emailInput.equals("Test") && passwordInput.equals("MKWL"))) {
             Intent intent = new Intent(LogInPage.this, MainActivity.class);

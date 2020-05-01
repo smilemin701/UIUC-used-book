@@ -5,20 +5,28 @@
     android:layout_height="match_parent"
     tools:context=".BuyFragment"
     android:orientation="vertical">
+
     <SearchView
-        android:layout_width="350dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="30dp"
-        android:queryHint="Search Book"
-        android:layout_gravity="center"
         android:id="@+id/search_bar"
-        android:iconifiedByDefault="false"></SearchView>
+        android:layout_width="330dp"
+        android:layout_height="55dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:background="@color/light"
+        android:iconifiedByDefault="false"
+        android:queryHint="Search Book"></SearchView>
 
     <ListView
-        android:padding="20dp"
         android:id="@+id/search_book"
-        android:layout_weight="1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"></ListView>
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="50dp"
+        android:layout_weight="1"
+        android:background="@color/light"
+        android:padding="10dp"
+        android:paddingTop="0dp"></ListView>
 
 </LinearLayout>
