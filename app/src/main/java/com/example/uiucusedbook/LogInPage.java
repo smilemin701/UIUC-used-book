@@ -1,71 +1,107 @@
 package com.example.uiucusedbook;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class LogInPage extends AppCompatActivity {
-    private EditText email;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+public class LogInPage extends AppCompatActivity implements View.OnClickListener {
+    private EditText emailID;
     private TextView error;
     private TextView error2;
     private EditText password;
     private Button login;
     private boolean onlineMode = false;
     private int attemptAllowed = 4;
+    FirebaseAuth mAuth;
+    private Button btnSignin;
+    private FirebaseAuth.AuthStateListener authStateListener;
+
 
     @Override
+    //Source : http://bit.ly/2WgHIjq/
+    // https://www.youtube.com/watch?v=ihZUHD3nYcs
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.log_in_page);
-        email = findViewById(R.id.emailofLogIn);
+        emailID = findViewById(R.id.emailofLogIn);
         password = findViewById(R.id.passwordofLogIn);
         login = findViewById(R.id.loginofLogin);
-        error = findViewById(R.id.errorDisplayofLogin);
-        error2 = findViewById(R.id.errorDisplay2ofLogin);
-        /**@Override
-        public void onClick(final View v) {
-        //Toast.makeText(MainActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
-        Intent signInIntent = new Intent(LogInPage.this, SignIn.class);
-        startActivity(signInIntent);
-        }*/
-        login.setOnClickListener(new View.OnClickListener() {
+        btnSignin = findViewById(R.id.BtnSignin);
+        mAuth = FirebaseAuth.getInstance();
+        btnSignin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
                 //Toast.makeText(MainActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
-                accountCheck(email.getText().toString(), password.getText().toString());
+                startActivity(new Intent(LogInPage.this, SignIn.class));
             }
         });
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                userLogin();
+            }
+        });
+
+
+    }
+    private void userLogin() {
+        String email = emailID.getText().toString().trim();
+        String pwd = password.getText().toString().trim();
+
+        if (email.isEmpty()) {
+            emailID.setError("Email is required");
+            emailID.requestFocus();
+            return;
+        }
+        if (!email.contains("illinois.edu")) {
+            emailID.setError("Use school email");
+            emailID.requestFocus();
+            return;
+        }
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            emailID.setError("Please enter a valid email");
+            emailID.requestFocus();
+            return;
+        }
+        if(pwd.isEmpty()) {
+            password.setError("Password is required");
+            password.requestFocus();
+            return;
+        }
+        mAuth.signInWithEmailAndPassword(email, pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        });
+
     }
 
-    /**
-     * Account Checking, if the entered information matches Admin or Account online,
-     * take the user to MainActivity.
-     * @param emailInput email input.
-     * @param passwordInput password input.
-     */
-    public void accountCheck(String emailInput, String passwordInput) {
-        if((emailInput.equals("Test") && passwordInput.equals("MKWL"))) {
-            Intent intent = new Intent(LogInPage.this, MainActivity.class);
-            startActivity(intent);
-        } else if(onlineMode) {
-            // Part Interact with server to check id. TODO!!
-            Intent intent = new Intent(LogInPage.this, MainActivity.class);
-            startActivity(intent);
-        } else {
-            attemptAllowed--;
-            error.setText("Wrong Email or Password, please try again");
-            error2.setText("Remaining Attempts: " + attemptAllowed);
-            if (attemptAllowed == 0) {
-                error.setText("Maximum Attempt Reached");
-                error2.setText("You are now Locked Out");
-                login.setEnabled(false);
-            }
-        }
+
+    @Override
+    public void onClick(View view) {
 
     }
 }

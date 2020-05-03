@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "576339703750",
+    "firebase_url": "https://used-book-sale-cba28.firebaseio.com",
+    "project_id": "used-book-sale-cba28",
+    "storage_bucket": "used-book-sale-cba28.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:576339703750:android:3f2c11a788f689560ea4c7",
+        "android_client_info": {
+          "package_name": "com.example.uiucusedbook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "576339703750-hrpb1ap3105852o0u95uisdgil60rrld.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.uiucusedbook",
+            "certificate_hash": "4f8f2fb140ffbda6ac14c452a61af051b015f12c"
+          }
+        },
+        {
+          "client_id": "576339703750-tl58m6gdspr5p2qcgn8l5co64old2pre.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBX1HyZRxxqXjMpADGKP81pVDZNdcQq8Jk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "576339703750-tl58m6gdspr5p2qcgn8l5co64old2pre.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
