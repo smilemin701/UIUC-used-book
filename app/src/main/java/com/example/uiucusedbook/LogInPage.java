@@ -19,14 +19,10 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class LogInPage extends AppCompatActivity implements View.OnClickListener {
+public class LogInPage extends AppCompatActivity {
     private EditText emailID;
-    private TextView error;
-    private TextView error2;
     private EditText password;
     private Button login;
-    private boolean onlineMode = false;
-    private int attemptAllowed = 4;
     FirebaseAuth mAuth;
     private Button btnSignin;
     private FirebaseAuth.AuthStateListener authStateListener;
@@ -50,10 +46,19 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
                 startActivity(new Intent(LogInPage.this, SignIn.class));
             }
         });
-        login.setOnClickListener(new View.OnClickListener() {
+        /*login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
                 userLogin();
+            }
+        });
+
+         */
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -99,9 +104,4 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
 
     }
 
-
-    @Override
-    public void onClick(View view) {
-
-    }
 }

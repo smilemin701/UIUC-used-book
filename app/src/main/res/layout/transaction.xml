@@ -9,23 +9,35 @@
 
     <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
+    android:layout_height="120dp"
+    android:orientation="vertical"
         android:background="@color/light">
 
         <TextView
-            android:id="@+id/transactionText"
-            android:layout_width="300dp"
+            android:id="@+id/transactionTitle"
+            android:layout_width="390dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:padding="10dp"
             android:text="Book Title"
             android:textColor="#ffffff"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textSize="20dp"/>
+
+        <TextView
+            android:id="@+id/transactionAuthor"
+            android:layout_width="390dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:text="Book Author"
+            android:textColor="#ffffff"
+            android:textStyle="italic"
+            android:textSize="13dp"/>
 
         <Button
             android:id="@+id/ifSold"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="30dp"
             android:layout_gravity="center"
             android:layout_marginRight="5dp"
