@@ -26,22 +26,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //List of Current Transaction
-/*
+
         transactionListView = findViewById(R.id.TransactionListView);
 
         transactionList = new ArrayList<Transaction>();
 
-        transactionList.add(new Transaction("Chemistry 101", "mk", "2019"));
-        transactionList.add(new Transaction("Chemistry 101", "mk", "2019"));
-        transactionList.add(new Transaction("Chemistry 101", "mk", "2019"));
-        transactionList.add(new Transaction("Chemistry 101", "mk", "2019"));
-        transactionList.add(new Transaction("Chemistry 101", "mk", "2019"));
+        transactionList.add(new Transaction("Chemistry 101"));
+        transactionList.add(new Transaction("Chemistry 101"));
+        transactionList.add(new Transaction("Chemistry 101"));
+        transactionList.add(new Transaction("Chemistry 101"));
+        transactionList.add(new Transaction("Chemistry 101"));
 
-        adapter = new TransactionAdapter(getApplicationContext(), transactionList);
+        adapter1 = new TransactionAdapter(getApplicationContext(), transactionList);
         //transactionListView.setAdapter(adapter);
 
 
- */
+
 
 
 
