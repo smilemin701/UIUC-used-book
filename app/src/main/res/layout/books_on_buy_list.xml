@@ -7,21 +7,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@color/light">
+        android:background="@drawable/normal_icon_light">
 
         <TextView
             android:id="@+id/BuyTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="@color/colorAccent"
-            android:paddingTop="10dp"
-            android:paddingRight="10dp"
+            android:background="@drawable/normal_icon_highlight"
             android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="5dp"
             android:text="Book Title"
-            android:textColor="#ffffff"
-            android:textStyle="bold"
-            android:textSize="15dp"/>
+            android:textColor="#04665C"
+            android:textSize="15dp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/BuyAuthor"
@@ -45,6 +46,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
+                android:layout_marginLeft="3dp"
                 android:background="@color/light"
                 android:src="@drawable/ic_contact_mail_black_24dp"></ImageButton>
 

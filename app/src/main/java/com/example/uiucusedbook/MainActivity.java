@@ -6,10 +6,13 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -82,6 +85,49 @@ public class MainActivity extends AppCompatActivity {
                 fragmentTransaction.replace(R.id.fragment, new SaleFragment());
                 fragmentTransaction.commit();
 
+            }
+        });
+
+        // Non-Essential: Easter Egg Text Shake.
+        final TextView text1 = findViewById(R.id.text1atMain);
+        final TextView text2 = findViewById(R.id.text2atMain);
+        final TextView text3 = findViewById(R.id.text3atMain);
+        final TextView text4 = findViewById(R.id.text4atMain);
+        final TextView text5 = findViewById(R.id.text5atMain);
+
+        text1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Animation shake = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.shake_animation);
+                text1.startAnimation(shake);
+            }
+        });
+        text2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Animation shake = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.shake_animation);
+                text2.startAnimation(shake);
+            }
+        });
+        text3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Animation shake = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.shake_animation);
+                text3.startAnimation(shake);
+            }
+        });
+        text4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Animation shake = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.shake_animation);
+                text4.startAnimation(shake);
+            }
+        });
+        text5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Animation shake = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.shake_animation);
+                text5.startAnimation(shake);
             }
         });
 
