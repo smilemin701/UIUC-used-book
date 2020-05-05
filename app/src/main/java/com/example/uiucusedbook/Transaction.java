@@ -4,10 +4,12 @@ public class Transaction {
 
     String Title;
     String Author;
+    String Button;
 
-    public Transaction(String title, String author) {
+    public Transaction(String title, String author, String button) {
         Title = title;
         Author = author;
+        Button = button;
     }
 
     public String getTitle() {
@@ -16,6 +18,9 @@ public class Transaction {
 
     public String getAuthor() {
         return Author;
+    }
+    public String getButton() {
+        return Button;
     }
 }
 

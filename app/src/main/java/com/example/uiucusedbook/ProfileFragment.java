@@ -87,13 +87,14 @@ public class ProfileFragment extends Fragment {
                 if (!queryDocumentSnapshots.isEmpty()) {
                     List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
                     for (DocumentSnapshot d: list) {
-                        Transaction transaction1 = new Transaction(d.getString("title"), d.getString("author"));
+                        Transaction transaction1 = new Transaction(d.getString("title"), d.getString("author"), d.getId());
                         listItems.add(transaction1);
                     }
                     transactionAdapter.notifyDataSetChanged();
                 }
             }
         });
+
 
 
 

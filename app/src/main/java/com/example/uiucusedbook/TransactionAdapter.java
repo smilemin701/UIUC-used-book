@@ -1,6 +1,8 @@
 package com.example.uiucusedbook;
 
 import android.content.Context;
+import android.content.Intent;
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,14 +12,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
 
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.ViewHolder> {
     private List<Transaction> listItems;
     private Context context;
-    public Button sold;
 
 
     public TransactionAdapter(List<Transaction> listItems, Context context) {
@@ -28,6 +33,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView transactionTitle;
         public TextView transactionAuthor;
+        public Button sold;
         public ViewHolder(View itemView) {
             super(itemView);
             transactionTitle = itemView.findViewById(R.id.transactionTitle);
@@ -45,21 +51,23 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.transaction, parent, false);
-        sold = (Button) v.findViewById(R.id.ifSold);
-        sold.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-                Toast.makeText(context, "sold", Toast.LENGTH_SHORT).show();
-            }
-        });
         return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Transaction listItem = listItems.get(position);
+        final Transaction listItem = listItems.get(position);
         holder.transactionTitle.setText(listItem.getTitle());
         holder.transactionAuthor.setText(listItem.getAuthor());
+        holder.sold.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                FirebaseFirestore.getInstance().collection(user).document(listItem.Button).delete();
+                Toast.makeText(context, "sold", Toast.LENGTH_SHORT).show();
+
+            }
+        });
     }
 
 

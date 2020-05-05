@@ -101,7 +101,6 @@ public class SaleFragment extends Fragment {
             @Override
             public void onClick(final View v) {
                 saveBook();
-                //startActivity(new Intent(getContext().getApplicationContext(), ProfileFragment.class));
             }
         });
 
@@ -140,6 +139,7 @@ public class SaleFragment extends Fragment {
             note.put("author", author);
             note.put("description", description);
             CollectionReference dbBooks = db.collection(user);
+            CollectionReference entireBooks = db.collection("EntireBooks");
             dbBooks.add(note)
                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
@@ -152,6 +152,8 @@ public class SaleFragment extends Fragment {
                     Toast.makeText(getContext().getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
+
+            entireBooks.add(note);
         }
 
 
