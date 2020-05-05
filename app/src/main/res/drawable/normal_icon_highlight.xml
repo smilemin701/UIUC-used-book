@@ -4,9 +4,9 @@
         <shape android:shape="rectangle">
             <!-- color and roundness of corners setting,
              use this drawable in any buttons you want -->
-            <solid android:color="@color/Orange" />
+            <solid android:color="@color/colorAccent" />
             <stroke android:color="#1F4096" android:width="3dp" />
-            <corners android:radius="10dp" />
+            <corners android:radius="6dp" />
         </shape>
     </item>
 </selector>

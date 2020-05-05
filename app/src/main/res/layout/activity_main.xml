@@ -60,9 +60,7 @@
             android:id="@+id/fragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center">
-
-        </RelativeLayout>
+            android:gravity="center"/>
 
         <LinearLayout
             android:id="@+id/firstPage"
@@ -71,13 +69,13 @@
             android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/text1atMain"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="10dp"
-                android:background="@drawable/normal_icon"
+                android:background="@drawable/normal_icon_orange"
                 android:padding="15dp"
                 android:text="Welcome to UIUC Used Book Trading Market, this is the Place to Find, Buy, and Sell your Used Books to other students in need. "
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
@@ -85,12 +83,12 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/text2atMain"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="@drawable/normal_icon"
+                android:background="@drawable/normal_icon_orange"
                 android:padding="15dp"
                 android:text="Check the &quot;Profile&quot; to see the Status the Books you're selling"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
@@ -98,12 +96,12 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/text3atMain"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="@drawable/normal_icon"
+                android:background="@drawable/normal_icon_orange"
                 android:padding="15dp"
                 android:text='Use "Buy" to Search and Contact the Sellers for the Books you want'
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
@@ -111,12 +109,12 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/text4atMain"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="@drawable/normal_icon"
+                android:background="@drawable/normal_icon_orange"
                 android:padding="15dp"
                 android:text='Got a Book to sell? Submit a Form in "Sell" '
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
@@ -124,12 +122,12 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/text5atMain"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="@drawable/normal_icon"
+                android:background="@drawable/normal_icon_orange"
                 android:padding="15dp"
                 android:text="Product of CS125 SP2020 @ UIUC"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
