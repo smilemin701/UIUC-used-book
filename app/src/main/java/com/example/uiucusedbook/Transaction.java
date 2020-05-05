@@ -2,20 +2,20 @@ package com.example.uiucusedbook;
 
 public class Transaction {
 
-    String bookTitle;
+    String Title;
+    String Author;
 
-
-    public Transaction(String bookTitle) {
-        this.bookTitle = bookTitle;
+    public Transaction(String title, String author) {
+        Title = title;
+        Author = author;
     }
 
-    public String getBookTitle() {
-        return bookTitle;
+    public String getTitle() {
+        return Title;
     }
 
-    public void setBookTitle(String bookTitle) {
-        this.bookTitle = bookTitle;
+    public String getAuthor() {
+        return Author;
     }
-
 }
 

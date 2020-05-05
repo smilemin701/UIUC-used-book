@@ -42,15 +42,16 @@
                 android:textSize="30dp"
                 android:textStyle="bold" />
 
-            <ListView
+
+            <androidx.recyclerview.widget.RecyclerView class="androidx.recyclerview.widget.RecyclerView"
                 android:id="@+id/TransactionListView"
                 android:layout_width="match_parent"
-                android:layout_height="418dp"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginRight="20dp"
-                android:divider="@color/colorPrimary"
-                android:dividerHeight="5dp"></ListView>
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="20dp"></androidx.recyclerview.widget.RecyclerView>
+
+
 
 
         </LinearLayout>

@@ -3,6 +3,8 @@ package com.example.uiucusedbook;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,10 +39,12 @@ public class ProfileFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private ListView transactionListView;
-    private TransactionAdapter adapter;
-    private List<Transaction> transactionList;
     private Button sold;
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter transactionAdapter;
+    private List<Transaction> listItems;
+    private FirebaseFirestore db;
+
 
 
     public ProfileFragment() {
@@ -61,27 +71,30 @@ public class ProfileFragment extends Fragment {
 
     public void onActivityCreated(Bundle b) {
         super.onActivityCreated(b);
+        recyclerView = getView().findViewById(R.id.TransactionListView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext().getApplicationContext()));
+        listItems = new ArrayList<>();
+        transactionAdapter = new TransactionAdapter(listItems, getContext().getApplicationContext());
+        recyclerView.setAdapter(transactionAdapter);
 
-        transactionListView = getView().findViewById(R.id.TransactionListView);
+        String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        transactionList = new ArrayList<Transaction>();
+        db = FirebaseFirestore.getInstance();
+        db.collection(user).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                if (!queryDocumentSnapshots.isEmpty()) {
+                    List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+                    for (DocumentSnapshot d: list) {
+                        Transaction transaction1 = new Transaction(d.getString("title"), d.getString("author"));
+                        listItems.add(transaction1);
+                    }
+                    transactionAdapter.notifyDataSetChanged();
+                }
+            }
+        });
 
-        transactionList.add(new Transaction("Chemistry 101"));
-        transactionList.add(new Transaction("Chemistry 102"));
-        transactionList.add(new Transaction("Chemistry 103"));
-        transactionList.add(new Transaction("Chemistry 104"));
-        transactionList.add(new Transaction("Chemistry 105"));
-        transactionList.add(new Transaction("Chemistry 101"));
-        transactionList.add(new Transaction("Chemistry 102"));
-        transactionList.add(new Transaction("Chemistry 103"));
-        transactionList.add(new Transaction("Chemistry 104"));
-        transactionList.add(new Transaction("Chemistry 105"));
-
-
-
-
-        adapter = new TransactionAdapter(getContext().getApplicationContext(), transactionList);
-        transactionListView.setAdapter(adapter);
 
 
     }
