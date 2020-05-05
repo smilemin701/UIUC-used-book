@@ -5,8 +5,8 @@
             <!-- color and roundness of corners setting,
              use this drawable in any buttons you want -->
             <solid android:color="@color/Orange" />
-            <stroke android:color="#1F4096" android:width="2dp" />
-            <corners android:radius="18dp" />
+            <stroke android:color="#1F4096" android:width="3dp" />
+            <corners android:radius="7dp" />
         </shape>
     </item>
 </selector>
