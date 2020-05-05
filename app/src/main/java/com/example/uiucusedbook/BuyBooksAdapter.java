@@ -1,6 +1,8 @@
 package com.example.uiucusedbook;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,7 +43,7 @@ public class BuyBooksAdapter extends RecyclerView.Adapter<BuyBooksAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         final BooksOnBuyList listItem = listItems.get(position);
         holder.description.setText(listItem.getDescription());
         holder.author.setText(listItem.getAuthor());
@@ -50,8 +52,8 @@ public class BuyBooksAdapter extends RecyclerView.Adapter<BuyBooksAdapter.ViewHo
         holder.emailSender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //sendMail(listItem.getSellerEmail());
-                Toast.makeText(context, "email Sent", Toast.LENGTH_SHORT).show();
+                sendMail(listItem.getSellerEmail());
+                holder.emailSender.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -76,12 +78,11 @@ public class BuyBooksAdapter extends RecyclerView.Adapter<BuyBooksAdapter.ViewHo
             emailSender = itemView.findViewById(R.id.emailSender);
         }
     }
-
     public void sendMail(String email) {
-        String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        String user = FirebaseAuth.getInstance().getCurrentUser().getEmail();
 
         String message = "Someone wants your book! Contact her/him: " + user;
-        JavaMailAPI javaMailAPI = new JavaMailAPI(context, "mc43@illinois.edu", "UIUC Used Book Market", message);
+        JavaMailAPI javaMailAPI = new JavaMailAPI(context, email, "UIUC Used Book Market", message);
         javaMailAPI.execute();
     }
 

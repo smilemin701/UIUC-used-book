@@ -107,13 +107,17 @@ public class SaleFragment extends Fragment {
             @Override
             public void onClick(final View v) {
                 saveBook();
+
                 submit.setBackgroundColor(Color.GRAY);
             }
         });
 
 
 
+
     }
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -142,13 +146,13 @@ public class SaleFragment extends Fragment {
         if (description.length() > 400) {
             descriptionTE.setError("Type less than 400 letters");
         } else {
-            final String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            final String user = FirebaseAuth.getInstance().getCurrentUser().getEmail();
             CollectionReference entireBooks = db.collection("EntireBooks");
             Map<String,Object> note2 = new HashMap<>();
             note2.put("title", title);
             note2.put("author", author);
             note2.put("description", description);
-            note2.put("userId", user);
+            note2.put("userEmail", user);
 
             entireBooks.add(note2).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                 @Override

@@ -67,7 +67,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         holder.sold.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                String user = FirebaseAuth.getInstance().getCurrentUser().getEmail();
                 FirebaseFirestore.getInstance().collection(user).document(listItem.Button).delete();
                 FirebaseFirestore.getInstance().collection("EntireBooks").document(listItem.bookId).delete();
                 Toast.makeText(context, "sold", Toast.LENGTH_SHORT).show();

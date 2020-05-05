@@ -80,7 +80,7 @@ public class BuyFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext().getApplicationContext()));
         listItems = new ArrayList<>();
-        adapter1 = new BuyBooksAdapter(listItems, getContext().getApplicationContext());
+        adapter1 = new BuyBooksAdapter(listItems, getContext());
         recyclerView.setAdapter(adapter1);
         String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
@@ -92,7 +92,7 @@ public class BuyFragment extends Fragment {
                     List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
                     for (DocumentSnapshot d: list) {
                          BooksOnBuyList booksList = new BooksOnBuyList(d.getString("title"),
-                                 d.getString("author"), d.getString("description"), d.getString("userId"));
+                                 d.getString("author"), d.getString("description"), d.getString("userEmail"));
                         listItems.add(booksList);
                     }
                     adapter1.notifyDataSetChanged();
