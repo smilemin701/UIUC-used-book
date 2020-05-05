@@ -2,14 +2,21 @@ package com.example.uiucusedbook;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SearchView;
 
@@ -37,8 +44,8 @@ public class BuyFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     SearchView bookSearchView;
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
-    private List<BooksOnBuyList> listItems;
+    private BuyBooksAdapter adapter1;
+    private ArrayList<BooksOnBuyList> listItems;
     private FirebaseFirestore db;
 
     // TODO: Rename and change types of parameters
@@ -73,8 +80,8 @@ public class BuyFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext().getApplicationContext()));
         listItems = new ArrayList<>();
-        adapter = new BuyBooksAdapter(listItems, getContext().getApplicationContext());
-        recyclerView.setAdapter(adapter);
+        adapter1 = new BuyBooksAdapter(listItems, getContext().getApplicationContext());
+        recyclerView.setAdapter(adapter1);
         String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         db = FirebaseFirestore.getInstance();
@@ -88,33 +95,46 @@ public class BuyFragment extends Fragment {
                                  d.getString("author"), d.getString("description"), d.getString("userId"));
                         listItems.add(booksList);
                     }
-                    adapter.notifyDataSetChanged();
+                    adapter1.notifyDataSetChanged();
                 }
             }
         });
-
-
-
-        /*
-
-        bookSearchView = getView().findViewById(R.id.search_bar);
-        bookSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        // Got Help from: https://www.youtube.com/watch?v=sJ-Z9G0SDhc
+        EditText searchBar = getView().findViewById(R.id.search_bar);
+        searchBar.addTextChangedListener(new TextWatcher() {
             @Override
-            public boolean onQueryTextSubmit(String s) {
-                return false;
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
             }
 
             @Override
-            public boolean onQueryTextChange(String s) {
-                adapter.getFilter().filter(s);
-                return false;
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                filter(editable.toString());
             }
         });
 
-         */
 
 
 
+
+
+
+
+    }
+
+    private void filter(String text) {
+        ArrayList<BooksOnBuyList> filteredList = new ArrayList<>();
+        for (BooksOnBuyList item : listItems) {
+            if (item.getTitle().toLowerCase().contains(text.toLowerCase())) {
+                filteredList.add(item);
+            }
+        }
+        adapter1.filterList(filteredList);
     }
 
     @Override
@@ -129,8 +149,11 @@ public class BuyFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_buy, container, false);
 
     }
+
 }

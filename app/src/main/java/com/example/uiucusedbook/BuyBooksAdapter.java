@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,16 +18,19 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BuyBooksAdapter extends RecyclerView.Adapter<BuyBooksAdapter.ViewHolder> {
 
     private List<BooksOnBuyList> listItems;
+    private List<BooksOnBuyList> fullListItems;
     private Context context;
 
     public BuyBooksAdapter(List<BooksOnBuyList> listItems, Context context) {
         this.listItems = listItems;
         this.context = context;
+        fullListItems = new ArrayList<>(listItems);
     }
 
     @NonNull
@@ -78,5 +83,11 @@ public class BuyBooksAdapter extends RecyclerView.Adapter<BuyBooksAdapter.ViewHo
         String message = "Someone wants your book! Contact her/him: " + user;
         JavaMailAPI javaMailAPI = new JavaMailAPI(context, "mc43@illinois.edu", "UIUC Used Book Market", message);
         javaMailAPI.execute();
+    }
+
+
+    public void filterList(ArrayList<BooksOnBuyList> filteredList) {
+        listItems = filteredList;
+        notifyDataSetChanged();
     }
 }

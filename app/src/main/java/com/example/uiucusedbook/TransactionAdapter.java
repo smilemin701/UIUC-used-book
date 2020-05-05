@@ -83,25 +83,4 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         return listItems.size();
     }
 
-    /*
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        View v = View.inflate(context, R.layout.transaction, null);
-        TextView transactionText = v.findViewById(R.id.transactionTitle);
-
-        transactionText.setText(transactionList.get(i).getBookTitle());
-
-        v.setTag(transactionList.get(i).getBookTitle());
-
-        Button sold = (Button) v.findViewById(R.id.ifSold);
-        sold.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-                Toast.makeText(context, "sold", Toast.LENGTH_SHORT).show();
-            }
-        });
-        return v;
-    }
-
-     */
 }

@@ -80,7 +80,6 @@ public class ProfileFragment extends Fragment {
         recyclerView.setAdapter(transactionAdapter);
 
         final String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
         db = FirebaseFirestore.getInstance();
         db.collection(user).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override

@@ -154,7 +154,6 @@ public class SaleFragment extends Fragment {
                 @Override
                 public void onSuccess(DocumentReference documentReference) {
                     String key = documentReference.getId();
-                    Toast.makeText(getContext().getApplicationContext(), key, Toast.LENGTH_SHORT).show();
                     final Map<String, Object> note = new HashMap<>();
                     note.put("title", title);
                     note.put("author", author);
