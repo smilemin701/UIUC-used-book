@@ -46,7 +46,8 @@ public class LogInPage extends AppCompatActivity {
                 startActivity(new Intent(LogInPage.this, SignIn.class));
             }
         });
-        /*login.setOnClickListener(new View.OnClickListener() {
+        /*
+        login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
                 userLogin();
@@ -54,6 +55,7 @@ public class LogInPage extends AppCompatActivity {
         });
 
          */
+
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
@@ -61,6 +63,8 @@ public class LogInPage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
 
 
     }

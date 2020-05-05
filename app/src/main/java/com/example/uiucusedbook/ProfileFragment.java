@@ -44,6 +44,7 @@ public class ProfileFragment extends Fragment {
     private RecyclerView.Adapter transactionAdapter;
     private List<Transaction> listItems;
     private FirebaseFirestore db;
+    private List<BooksOnBuyList> listItems2;
 
 
 
@@ -75,10 +76,10 @@ public class ProfileFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext().getApplicationContext()));
         listItems = new ArrayList<>();
-        transactionAdapter = new TransactionAdapter(listItems, getContext().getApplicationContext());
+        transactionAdapter = new TransactionAdapter(listItems, listItems2, getContext().getApplicationContext());
         recyclerView.setAdapter(transactionAdapter);
 
-        String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        final String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         db = FirebaseFirestore.getInstance();
         db.collection(user).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -87,7 +88,8 @@ public class ProfileFragment extends Fragment {
                 if (!queryDocumentSnapshots.isEmpty()) {
                     List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
                     for (DocumentSnapshot d: list) {
-                        Transaction transaction1 = new Transaction(d.getString("title"), d.getString("author"), d.getId());
+                        Transaction transaction1 = new Transaction(d.getString("title"),
+                                d.getString("author"), d.getId(), d.getString("BookId"));
                         listItems.add(transaction1);
                     }
                     transactionAdapter.notifyDataSetChanged();

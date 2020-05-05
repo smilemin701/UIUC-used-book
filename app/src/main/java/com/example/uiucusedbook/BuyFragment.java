@@ -3,6 +3,8 @@ package com.example.uiucusedbook;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,8 +13,16 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.api.Distribution;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 //commit
 
 /**
@@ -25,9 +35,11 @@ public class BuyFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private ListView search_book;
-    ArrayAdapter<String> adapter;
     SearchView bookSearchView;
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter adapter;
+    private List<BooksOnBuyList> listItems;
+    private FirebaseFirestore db;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -56,15 +68,34 @@ public class BuyFragment extends Fragment {
     }
     public void onActivityCreated(Bundle b) {
         super.onActivityCreated(b);
-        search_book = getView().findViewById(R.id.search_book);
-        ArrayList<String> arrayBook = new ArrayList<>();
-        arrayBook.addAll(Arrays.asList(getResources().getStringArray(R.array.my_books)));
-        adapter = new ArrayAdapter<String>(
-                getContext().getApplicationContext(),
-                android.R.layout.simple_list_item_1,
-                arrayBook
-        );
-        search_book.setAdapter(adapter);
+
+        recyclerView = getView().findViewById(R.id.listOfBooks);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext().getApplicationContext()));
+        listItems = new ArrayList<>();
+        adapter = new BuyBooksAdapter(listItems, getContext().getApplicationContext());
+        recyclerView.setAdapter(adapter);
+        String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        db = FirebaseFirestore.getInstance();
+        db.collection("EntireBooks").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                if (!queryDocumentSnapshots.isEmpty()) {
+                    List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+                    for (DocumentSnapshot d: list) {
+                         BooksOnBuyList booksList = new BooksOnBuyList(d.getString("title"),
+                                 d.getString("author"), d.getString("description"), d.getString("userId"));
+                        listItems.add(booksList);
+                    }
+                    adapter.notifyDataSetChanged();
+                }
+            }
+        });
+
+
+
+        /*
 
         bookSearchView = getView().findViewById(R.id.search_bar);
         bookSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -79,6 +110,10 @@ public class BuyFragment extends Fragment {
                 return false;
             }
         });
+
+         */
+
+
 
     }
 

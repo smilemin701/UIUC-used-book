@@ -2,6 +2,7 @@ package com.example.uiucusedbook;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
@@ -23,11 +26,13 @@ import java.util.List;
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.ViewHolder> {
     private List<Transaction> listItems;
     private Context context;
+    private List<BooksOnBuyList> listItems2;
 
 
-    public TransactionAdapter(List<Transaction> listItems, Context context) {
+    public TransactionAdapter(List<Transaction> listItems, List<BooksOnBuyList> listItems2, Context context) {
         this.listItems = listItems;
         this.context = context;
+        this.listItems2 = listItems2;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -55,7 +60,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         final Transaction listItem = listItems.get(position);
         holder.transactionTitle.setText(listItem.getTitle());
         holder.transactionAuthor.setText(listItem.getAuthor());
@@ -64,7 +69,9 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             public void onClick(final View v) {
                 String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 FirebaseFirestore.getInstance().collection(user).document(listItem.Button).delete();
+                FirebaseFirestore.getInstance().collection("EntireBooks").document(listItem.bookId).delete();
                 Toast.makeText(context, "sold", Toast.LENGTH_SHORT).show();
+                holder.sold.setBackgroundColor(Color.GRAY);
 
             }
         });

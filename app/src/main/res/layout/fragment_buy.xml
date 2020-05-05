@@ -16,17 +16,14 @@
         android:iconifiedByDefault="false"
         android:queryHint="Search Book"></SearchView>
 
-    <ListView
-        android:id="@+id/search_book"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listOfBooks"
+        android:layout_width="350dp"
+        android:layout_height="match_parent"
         android:layout_marginTop="20dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="50dp"
+        android:layout_gravity="center"
         android:layout_weight="1"
-        android:background="@color/light"
         android:padding="10dp"
-        android:paddingTop="0dp"></ListView>
+        android:paddingTop="0dp"/>
 
 </LinearLayout>

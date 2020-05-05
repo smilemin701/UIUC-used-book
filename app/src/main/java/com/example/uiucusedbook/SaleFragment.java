@@ -1,6 +1,7 @@
 package com.example.uiucusedbook;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -26,9 +27,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.core.Tag;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -36,7 +40,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 
 /**
@@ -101,6 +107,7 @@ public class SaleFragment extends Fragment {
             @Override
             public void onClick(final View v) {
                 saveBook();
+                submit.setBackgroundColor(Color.GRAY);
             }
         });
 
@@ -126,40 +133,55 @@ public class SaleFragment extends Fragment {
     }
 
     public void saveBook() {
-        String title = titleTE.getText().toString();
-        String description = descriptionTE.getText().toString();
-        String author = authorTE.getText().toString();
+        String code;
+        final String title = titleTE.getText().toString();
+        final String description = descriptionTE.getText().toString();
+        final TextView test = getView().findViewById(R.id.test);
+        final String author = authorTE.getText().toString();
         // less than  50 words
         if (description.length() > 400) {
             descriptionTE.setError("Type less than 400 letters");
         } else {
-            String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
-            Map<String, Object> note = new HashMap<>();
-            note.put("title", title);
-            note.put("author", author);
-            note.put("description", description);
-            CollectionReference dbBooks = db.collection(user);
+            final String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
             CollectionReference entireBooks = db.collection("EntireBooks");
-            dbBooks.add(note)
-                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                        @Override
-                        public void onSuccess(DocumentReference documentReference) {
-                            Toast.makeText(getContext().getApplicationContext(), "submitted", Toast.LENGTH_SHORT).show();
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
+            Map<String,Object> note2 = new HashMap<>();
+            note2.put("title", title);
+            note2.put("author", author);
+            note2.put("description", description);
+            note2.put("userId", user);
+
+            entireBooks.add(note2).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                 @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(getContext().getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                public void onSuccess(DocumentReference documentReference) {
+                    String key = documentReference.getId();
+                    Toast.makeText(getContext().getApplicationContext(), key, Toast.LENGTH_SHORT).show();
+                    final Map<String, Object> note = new HashMap<>();
+                    note.put("title", title);
+                    note.put("author", author);
+                    note.put("description", description);
+                    note.put("BookId", key);
+                    CollectionReference dbBooks = db.collection(user);
+                    dbBooks.add(note)
+                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                @Override
+                                public void onSuccess(DocumentReference documentReference) {
+                                    Toast.makeText(getContext().getApplicationContext(), "submitted", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(getContext().getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
             });
 
-            entireBooks.add(note);
+
         }
 
 
 
     }
-
 
 
 

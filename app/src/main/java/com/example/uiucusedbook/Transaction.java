@@ -5,11 +5,13 @@ public class Transaction {
     String Title;
     String Author;
     String Button;
+    String bookId;
 
-    public Transaction(String title, String author, String button) {
+    public Transaction(String title, String author, String button, String bookId) {
         Title = title;
         Author = author;
         Button = button;
+        this.bookId = bookId;
     }
 
     public String getTitle() {
