@@ -11,7 +11,7 @@
     android:layout_width="match_parent"
     android:layout_height="105dp"
     android:orientation="vertical"
-        android:background="@color/light">
+        android:background="@drawable/normal_icon_light">
 
         <TextView
             android:id="@+id/transactionTitle"
