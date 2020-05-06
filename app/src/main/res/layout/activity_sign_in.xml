@@ -31,7 +31,7 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:layout_margin="0dp"
-                android:text="Sign In"
+                android:text="Sign Up"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="#FFFFFF"
                 android:textSize="30dp"

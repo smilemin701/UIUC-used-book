@@ -8,15 +8,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,10 +27,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //List of Current Transaction
-
-
-
-
 
 
         final Button profileButton = findViewById(R.id.profileButton);
@@ -94,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
         final TextView text3 = findViewById(R.id.text3atMain);
         final TextView text4 = findViewById(R.id.text4atMain);
         final TextView text5 = findViewById(R.id.text5atMain);
+        final ImageView cslogo = findViewById(R.id.cs125logo);
 
         text1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,6 +122,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Animation shake = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.shake_animation);
                 text5.startAnimation(shake);
+            }
+        });
+        cslogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Animation spin = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_animation);
+                cslogo.startAnimation(spin);
             }
         });
 
