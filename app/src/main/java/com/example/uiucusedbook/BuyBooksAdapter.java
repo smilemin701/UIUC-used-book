@@ -56,8 +56,6 @@ public class BuyBooksAdapter extends RecyclerView.Adapter<BuyBooksAdapter.ViewHo
                 holder.emailSender.setVisibility(View.INVISIBLE);
             }
         });
-
-
     }
 
     @Override
@@ -81,7 +79,7 @@ public class BuyBooksAdapter extends RecyclerView.Adapter<BuyBooksAdapter.ViewHo
     public void sendMail(String email) {
         String user = FirebaseAuth.getInstance().getCurrentUser().getEmail();
 
-        String message = "Someone wants your book! Contact her/him: " + user;
+        String message = "Someone wants your book! Contact her/him via. Email: " + user;
         JavaMailAPI javaMailAPI = new JavaMailAPI(context, email, "UIUC Used Book Market", message);
         javaMailAPI.execute();
     }

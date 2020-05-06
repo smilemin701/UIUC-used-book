@@ -59,45 +59,43 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener{
         String pwd = password.getText().toString().trim();
 
         if (email.isEmpty()) {
-            emailID.setError("Email is required");
+            emailID.setError("Email Required");
             emailID.requestFocus();
             return;
         }
         if (!email.contains("illinois.edu")) {
-            emailID.setError("Use school email");
+            emailID.setError("Please use School Email");
             emailID.requestFocus();
             return;
         }
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            emailID.setError("Please enter a valid email");
+            emailID.setError("Please enter a Valid Email");
             emailID.requestFocus();
             return;
         }
         if(pwd.isEmpty()) {
-            password.setError("Password is required");
+            password.setError("Password Required");
             password.requestFocus();
             return;
         }
         mAuth.createUserWithEmailAndPassword(email, pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    Intent intent = new Intent(SignIn.this, MainActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
+            if (task.isSuccessful()) {
+                Intent intent = new Intent(SignIn.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            } else {
+                if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                    Toast.makeText(getApplicationContext(), "This email is already registered", Toast.LENGTH_SHORT).show();
+
                 } else {
-                    if (task.getException() instanceof FirebaseAuthUserCollisionException) {
-                        Toast.makeText(getApplicationContext(), "this email is already registered", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
 
-                    } else {
-                        Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-
-                    }
                 }
             }
+            }
         });
-
-
     }
 
 

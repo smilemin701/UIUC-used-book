@@ -74,15 +74,6 @@ public class SaleFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SaleFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static SaleFragment newInstance(String param1, String param2) {
         SaleFragment fragment = new SaleFragment();
         Bundle args = new Bundle();
@@ -100,9 +91,6 @@ public class SaleFragment extends Fragment {
         descriptionTE = getView().findViewById(R.id.descriptionofSale);
         emailTE = getView().findViewById(R.id.emailofLogIn);
 
-
-
-
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
@@ -111,12 +99,7 @@ public class SaleFragment extends Fragment {
                 submit.setBackgroundColor(Color.GRAY);
             }
         });
-
-
-
-
     }
-
 
 
     @Override
@@ -148,7 +131,7 @@ public class SaleFragment extends Fragment {
         } else {
             final String user = FirebaseAuth.getInstance().getCurrentUser().getEmail();
             CollectionReference entireBooks = db.collection("EntireBooks");
-            Map<String,Object> note2 = new HashMap<>();
+            Map<String, Object> note2 = new HashMap<>();
             note2.put("title", title);
             note2.put("author", author);
             note2.put("description", description);
@@ -168,7 +151,7 @@ public class SaleFragment extends Fragment {
                             .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                 @Override
                                 public void onSuccess(DocumentReference documentReference) {
-                                    Toast.makeText(getContext().getApplicationContext(), "submitted", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getContext().getApplicationContext(), "Submitted! Check your Profile", Toast.LENGTH_SHORT).show();
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -178,14 +161,6 @@ public class SaleFragment extends Fragment {
                     });
                 }
             });
-
-
         }
-
-
-
     }
-
-
-
 }

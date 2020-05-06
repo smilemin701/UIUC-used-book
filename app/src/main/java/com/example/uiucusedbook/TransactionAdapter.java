@@ -50,8 +50,6 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     }
 
 
-
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -70,7 +68,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                 String user = FirebaseAuth.getInstance().getCurrentUser().getEmail();
                 FirebaseFirestore.getInstance().collection(user).document(listItem.Button).delete();
                 FirebaseFirestore.getInstance().collection("EntireBooks").document(listItem.bookId).delete();
-                Toast.makeText(context, "sold", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Book marked as Sold", Toast.LENGTH_SHORT).show();
                 holder.sold.setBackgroundColor(Color.GRAY);
 
             }
