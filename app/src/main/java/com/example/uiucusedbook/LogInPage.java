@@ -43,22 +43,20 @@ public class LogInPage extends AppCompatActivity {
                 startActivity(new Intent(LogInPage.this, SignIn.class));
             }
         });
-        /*
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
                 userLogin();
             }
         });
-         */
 
-        login.setOnClickListener(new View.OnClickListener() {
+        /**login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
     }
     private void userLogin() {
         String email = emailID.getText().toString().trim();

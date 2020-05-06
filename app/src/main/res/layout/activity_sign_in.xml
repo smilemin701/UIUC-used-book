@@ -89,7 +89,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="50dp"
                 android:background="#FD9153"
-                android:text="Sign In"
+                android:text="Sign me Up!"
                 android:textColor="#ffffff"></Button>
 
 
